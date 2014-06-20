@@ -4,6 +4,16 @@
 #學號:F74006323
 #系級:資訊104乙班
 
+#程式碼簡介
+#邊掃每一條資料的時候邊將路名parse下來，並給予此路名一個專屬的id
+#用year[id]這個vector陣列，記錄路名編號為id的 所有出現過的年月
+#用num[id]記錄路名編號為id的 出現過不同年月的數量
+#並用max_num記錄當前最大數量
+#而max_id[] 是用來記錄擁有當前最大數量的所有id
+#最後，要輸出以前，先將max_id[]sort過一遍，由於編號是由上至下，先碰到的先編號
+#所以sort過以後便能符合題目要求的先碰到的先輸出
+#最後根據編號的路段名 再找出該路段的最高成交價和最低成交價
+
 import urllib
 import sys
 import json
@@ -15,7 +25,7 @@ else:
 	content = urllib.urlopen(sys.argv[1]).read() #parse網頁下來
 	json_input = json.loads(content) #takes a JSON string and returns it as a Python data structure
 
-	print content
+	#print content
 	road_by_key = {} #記錄出現過的道路名字跟出現次數 建立dictionary(map) 有key值找value
 	road_by_value = {} #有value值找key
 	id_num = 0  #id總個數
@@ -73,11 +83,11 @@ else:
 				if element[u"總價元"] < lowest:
 					lowest = int(element[u"總價元"])
 		#print 一定會在最後輸出空格
-#		name += ","
-#		if i == 0:
-#			sys.stdout.write("\"")	#使用sys.stdout.write可以不輸出換行,不輸出空格
-#		if i == len(max_id)-1:	#最後一筆答案的尾巴要有 " 符號
-#			print name, "最高成交價:%d, 最低成交價:%d\"" % (highest,lowest)
-#		else:
-#			print name, "最高成交價:%d, 最低成交價:%d" % (highest,lowest)
-#		i += 1
+		name += ","
+		if i == 0:
+			sys.stdout.write("\"")	#使用sys.stdout.write可以不輸出換行,不輸出空格
+		if i == len(max_id)-1:	#最後一筆答案的尾巴要有 " 符號
+			print name, "最高成交價:%d, 最低成交價:%d\"" % (highest,lowest)
+		else:
+			print name, "最高成交價:%d, 最低成交價:%d" % (highest,lowest)
+		i += 1
