@@ -84,10 +84,5 @@ else:
 					lowest = int(element[u"總價元"])
 		#print 一定會在最後輸出空格
 		name += ","
-		if i == 0:
-			sys.stdout.write("\"")	#使用sys.stdout.write可以不輸出換行,不輸出空格
-		if i == len(max_id)-1:	#最後一筆答案的尾巴要有 " 符號
-			print name, "最高成交價:%d, 最低成交價:%d\"" % (highest,lowest)
-		else:
-			print name, "最高成交價:%d, 最低成交價:%d" % (highest,lowest)
+		print name, "最高成交價:%d, 最低成交價:%d" % (highest,lowest)
 		i += 1
